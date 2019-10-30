@@ -25,15 +25,15 @@ from django.contrib.auth import views
 urlpatterns = [
     # 後台控制界面
     path('admin/', admin.site.urls),
-    path('main/', main),
+    path('main/', main, name = 'main'),
     # blog url
-    path('blog/<str:user>', blog),
+    path('blog/<str:user>', blog, name = 'blog'),
     # imgDetail url
-    path('blog/<str:user>/<str:imgID>', imgDetail),
+    path('blog/<str:user>/<str:imgID>', imgDetail, name = 'imgDetail'),
     # 新增commend url
-    path('blog/addComment', addComment),
+    path('blog/addComment', addComment, name = 'addComment'),
     # 登入url
     path('accounts/login/', views.LoginView.as_view(), name='login'),
     # 登出url
-	path('accounts/logout/', logout)
+	path('accounts/logout/', logout, name = 'logout')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -33,6 +33,11 @@ def assessPicture(imgPath):
         print("Evaluating : ", imgPath)
         print("NIMA Score : %0.3f +- (%0.3f)" % (mean, std))
         print()
-        return mean
+        mean_update = -17 + 4.5*mean
+        if mean_update > 10:
+            mean_update = 10
+        elif mean_update < 1:
+            mean_update = 1
+        return mean_update
 #assessPicture()
 

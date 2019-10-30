@@ -8,6 +8,7 @@ from django.shortcuts import render
 from main.models import Img, User, Comment
 from .score_mobilenet_input import assessPicture
 from .visionAPI import getLabel
+from django.urls import  reverse
 
 
 # Create your views here.
@@ -109,4 +110,4 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('/main/')
+    return HttpResponseRedirect(reverse('main'))
