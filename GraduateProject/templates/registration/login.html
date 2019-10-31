@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>登入</title>
-    </head>
-    <body>
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>How attractive you are by robot</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <script src="https://kit.fontawesome.com/76e472a2b2.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+    <div class="login-frame">
+        <h2>Log in to your account</h2>
         <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <input type="submit" value="登入" />
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <div class="submit-frame">
+                <input type="submit" value="Log in" />
+            </div>
         </form>
-    </body>
+        <p>Don't have an account yet? <a href="">Sign up now</a></p>
+    </div>
+
+</body>
+
 </html>

@@ -1,4 +1,7 @@
 from django.contrib import admin
+
+# Register your models here.
+from django.contrib import admin
 from .models import Img, Comment
 
 # Register your models here.
@@ -8,4 +11,4 @@ admin.site.register(Img,adminIMG)
 
 class adminCOMMENT(admin.ModelAdmin):
     list_display = ('author','img','createTime','content')
-admin.site.register(Comment,adminCOMMENT)
+admin.site.register(Comment,adminCOMMENT) 

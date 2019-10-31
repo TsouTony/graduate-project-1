@@ -5,10 +5,7 @@ from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from main.models import Img, User, Comment
-from .score_mobilenet_input import assessPicture
-from .visionAPI import getLabel
-from django.urls import  reverse
+from main.models import User, Img, Comment
 
 
 # Create your views here.
@@ -31,7 +28,6 @@ def main(request):
         img.label = getLabel(str(img.img_url))
         img.save()
 
-    
     imgListOrderByCmpScore = Img.objects.order_by("-cmpScore")
     imgListOrderByLike = Img.objects.order_by("-like")
     currentImg = img
@@ -93,7 +89,7 @@ def addComment(request):
     return HttpResponseRedirect('/blog/' + authorName + '/' + imgID)
 
 
-# return render(request, 'blog/imgDetail.html', context)
+#return render(request, 'blog/imgDetail.html', context)
 
 def login(request):
     if request.user.is_authenticated:
@@ -110,4 +106,17 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
+    return HttpResponseRedirect('/main/')
+
+
+def signUp(request):
+
+    first_name = request.POST['firstName']
+    last_name = request.POST['lastName']
+    username = request.POST['username']
+    password = request.POST['password']
+    user = User.objects.create_user(
+        username=username, password=password, first_name=first_name, last_name=last_name)
+    user.save()
+
     return HttpResponseRedirect(reverse('main'))

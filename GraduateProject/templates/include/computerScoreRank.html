@@ -1,0 +1,15 @@
+<!-- computerScoreList -->
+
+<div class="computer-score-rank">
+    <h1>Computer Score Rank</h1>
+    {% for item in imgListOrderByCmpScore %}
+    <div class="img-outer-frame">
+      <div class="img-frame">
+          <a href="/blog/{{ item.author.username }}/{{ item.id }}"><img src="{{ item.img_url.url }}" alt=""></a>
+          <div class="like-score">
+          <i class="far fa-chart-bar"></i> {{ item.cmpScore }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>

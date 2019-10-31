@@ -1,44 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% load static %}
-
-<head>
-    <meta charset="UTF-8">
-    <title>How attractive you are by robot</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <script src="https://kit.fontawesome.com/76e472a2b2.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-</head>
+{% include "head.html" %}
 
 <body>
 
-<!-- JavaScript & jQuery 版本-->
-
-<!-- HTML part -->
-
 <div class="container">
-  <!-- navbar template -->
-  <div class="nav-bar">
-    <ul>
-      <li>
-        <a href="/main">Home</a>
-      </li>
-    {% if user.is_authenticated %}
-      <li>
-        <a href="/blog/{{ request.user.username }}">Blog</a>
-      </li>
-    {% endif %}
-      <li class="bars">
-        {% if user.is_authenticated %}
-          <a href="/accounts/logout">Sign out<!--<i class="fas fa-bars fa-lg"></i>--></a>
-        {% else %}
-          <a href="/accounts/login">Sign in<!-- <i class="fas fa-bars fa-lg"></i> --></a>
-        {% endif %}
-      </li>
-    </ul>
-  </div>
-  <!-- navbar template -->
+
+  {% include "navbar.html" %}
 
   <!-- upload-image-display -->
   <div class="current-image-frame">
@@ -60,6 +29,7 @@
       </div>
 
     </div>
+  </div>
 
     <div class="comment-list-frame">
         {% for item in currentImg.comments.all %}
@@ -79,18 +49,9 @@
         </div>
     </div>
 
-
-
-  </div>
-
-  <div class="footer">
-    <hr style="border: 0.3px #fff solid;">
-    <p>© 2019 Created By Aaron Pan. </p>
-  </div>
-
 </div>
 
-<!-- JavaScript part -->
+{% include "footer.html" %}
 
 <script>
 

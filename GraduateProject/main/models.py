@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from .storage import ImageStorage
 from .listField import ListField
 
-
 # Create your models here.
 # QuerySet 語法 - all()， get()， filter() 和 exclude()
 
@@ -16,6 +15,7 @@ class UserProfile(models.Model):
     # first_name
     # last_name
     auth_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # follow user
 
     def __str__(self):
         return self.user.username
@@ -30,6 +30,7 @@ class Img(models.Model):
     createTime = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='imgs')
     label = ListField(null=True)
+    # user_like = models.ManyToManyField(User, on_delete=models.CASCASE, related_name="like_imgs", null=True)
 
     def __str__(self):
         return self.id
@@ -44,7 +45,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.id
-
-        
-
 
