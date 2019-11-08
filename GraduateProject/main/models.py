@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
 from .storage import ImageStorage
+from .otherFunctions.listField import ListField
 
 
 # Create your models here.
@@ -15,6 +16,8 @@ class UserProfile(models.Model):
     # first_name
     # last_name
     auth_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # follow user
+    # is_authenticated
 
     def __str__(self):
         return self.user.username
@@ -24,10 +27,13 @@ class Img(models.Model):
     # 每張img要有自己的id
     id = models.CharField(primary_key=True, max_length=20, null=False)
     img_url = models.ImageField(null=True, upload_to='img', storage=ImageStorage())
-    cmpScore = models.IntegerField(null=True)
+    cmpScore = models.FloatField(null=True)
     like = models.IntegerField(null=True)
+    description = models.TextField(null=True)
     createTime = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='imgs')
+    user_like = models.ManyToManyField(User, related_name="like_imgs", null=True)
+    label = ListField(null=True)
 
     def __str__(self):
         return self.id
@@ -44,5 +50,4 @@ class Comment(models.Model):
         return self.id
 
 
-admin.site.register(Img)
-admin.site.register(Comment)
+
